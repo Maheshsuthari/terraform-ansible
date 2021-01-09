@@ -1,7 +1,7 @@
 provider "aws" {
   region = "us-east-1"
-  access_key = "AKIARNW73ACKVKYYHHG6"
-  secret_key = "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"
+  access_key = "AKIxxyyy--ACKVKYYHHG6"
+  secret_key = "j0/4rmRTwxEw"
 }
 module "webserver" {
   source  =   "../modules/webserver"
