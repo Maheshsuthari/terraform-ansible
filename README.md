@@ -2,6 +2,7 @@
 #automate configuration managment with terraform, while launching vms you will be allow ansible to make application changes
 
 #Steps
+
 git clone https://github.com/Maheshsuthari/terraform-ansible
 
 cd terraform-ansible
