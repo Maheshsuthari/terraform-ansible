@@ -1,0 +1,22 @@
+provider "aws" {
+  region = "us-east-1"
+  access_key = "AKIARNW73ACKVKYYHHG6"
+  secret_key = "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"
+}
+
+resource "aws_vpc" "main" {
+  cidr_block = "10.0.0.0/16"
+}
+
+module "nginx_webserver" {
+  source  =   "../modules/webserver"
+  vpc_id = aws_vpc.main.id
+  cidr_block = "10.0.0.0/16"
+  webserver_name = "mahesh"
+  ami           = "ami-0dba2cb6798deb6d8"
+  instance_type  = "t2.micro"
+  security_groups = "${module.nginx_webserver.security_group}"
+  
+}
+
+
