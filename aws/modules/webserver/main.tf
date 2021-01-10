@@ -78,7 +78,7 @@ inline = ["echo 'Wait until SSH is ready'", "sudo apt update -y", "sudo apt inst
     }
   }
   provisioner "local-exec" {
-    command = "ansible-playbook  -i ${aws_instance.webserver.public_ip}, --private-key ${local.private_key_path} nginx.yaml"
+    command = "ansible-playbook  -i ${aws_instance.webserver.public_ip}, --private-key ${local.private_key_path} ../../nginx/nginx.yaml"
   }
 }
 
