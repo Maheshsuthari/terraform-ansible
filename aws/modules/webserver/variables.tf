@@ -1,7 +1,7 @@
 
 variable "cidr_block" {
     type        = string
-    description  = "subnet.cidr.block"
+    description  = "vpc_cidr.block"
 }
 
 variable "webserver_name" {
@@ -17,3 +17,11 @@ variable "ami" {
     type      = string
     description = "ami_id"
 }
+variable "os_ami" {
+  default = "linux"
+}
+
+variable "ssh_user" {
+     description  = "ssh user"
+}
+
