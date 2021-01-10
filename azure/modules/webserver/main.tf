@@ -1,16 +1,3 @@
-provider "azurerm" {
-  # Whilst version is optional, we /strongly recommend/ using it to pin the version of the Provider being used
-  version = "=2.5.0" 
-<<<<<<< HEAD
- # subscription_id  = "833432df-287c-4d5b-ae53-f76a0a8f376e"
-=======
- # subscription_id  = {}
- # client_id    = {}
- # client_secret = {}
- # tenant_id   = {}
->>>>>>> 875a331efbf86dfa62d11bc17caf023b2ffbd7fa
-  features {}
-}
 
 resource "azurerm_resource_group" "webserver" {
     name     = "webeGroup"
