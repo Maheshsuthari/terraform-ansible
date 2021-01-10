@@ -5,11 +5,11 @@ provider "aws" {
 }
 module "webserver" {
   source  =   "../modules/webserver"
-  cidr_block = "10.0.0.0/16"
+  cidr_block = var.cidr_block
   webserver_name = "mahesh"
   ami           = "${lookup(var.AMIS, var.os_ami)}"
   instance_type  = var.instance_type
- 
+  ssh_user      = var.ssh_user
 }
 
 

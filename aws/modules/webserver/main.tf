@@ -1,16 +1,16 @@
 locals {
-ssh_user         = "ubuntu"
+ssh_user         = var.ssh_user
 key_name         = "suthari"
 private_key_path = "../suthari.pem"
 }
 resource "aws_vpc" "main" {
-cidr_block = "10.0.0.0/16"
+cidr_block = var.cidr_block
 }
 resource "aws_internet_gateway" "gw" {
 vpc_id = aws_vpc.main.id
 
 tags = {
-Name = "main"
+Name = "web"
 }
 }
 resource "aws_route_table" "r" {
@@ -27,7 +27,7 @@ Name = "main"
 }
 resource "aws_subnet" "webserver" {
 vpc_id     = aws_vpc.main.id
-cidr_block = var.cidr_block
+cidr_block = " ${var.cidr_block, 8, 1}"
 }
 resource "aws_route_table_association" "a" {
 subnet_id      = aws_subnet.webserver.id
@@ -70,7 +70,6 @@ key_name                    = local.key_name
 
 provisioner "remote-exec" {
 inline = ["echo 'Wait until SSH is ready'", "sudo apt update -y", "sudo apt install python3 -y", "sudo apt install ansible -y", "echo 'done'"]
-when   = linux 
     connection {
       type        = "ssh"
       user        = local.ssh_user
