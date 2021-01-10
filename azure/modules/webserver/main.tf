@@ -1,16 +1,20 @@
 provider "azurerm" {
   # Whilst version is optional, we /strongly recommend/ using it to pin the version of the Provider being used
   version = "=2.5.0" 
+<<<<<<< HEAD
+ # subscription_id  = "833432df-287c-4d5b-ae53-f76a0a8f376e"
+=======
  # subscription_id  = {}
  # client_id    = {}
  # client_secret = {}
  # tenant_id   = {}
+>>>>>>> 875a331efbf86dfa62d11bc17caf023b2ffbd7fa
   features {}
 }
 
 resource "azurerm_resource_group" "webserver" {
     name     = "webeGroup"
-    location = "eastus"
+    location = var.location
 
     tags = {
         environment = "Terraform-test"
@@ -18,7 +22,7 @@ resource "azurerm_resource_group" "webserver" {
 }
 
 resource "azurerm_virtual_network" "webserver" {
-  location = "eastus"
+  location = var.location
   name = "webserver"
   address_space = ["10.0.0.0/16"]
   resource_group_name = azurerm_resource_group.webserver.name
@@ -35,12 +39,12 @@ resource "azurerm_public_ip" "webpublicip" {
   resource_group_name = azurerm_resource_group.webserver.name
   allocation_method = "Dynamic"
   sku = "Basic"
-  location = "eastus"
+  location = var.location
 }
 resource "azurerm_network_interface" "webnic" {
   name = "myvm1-nic"
   resource_group_name = azurerm_resource_group.webserver.name
-  location = "eastus"
+  location = var.location 
   ip_configuration {
     name = "ipconfig1"
     subnet_id = azurerm_subnet.webserver.id
@@ -53,9 +57,9 @@ resource "azurerm_windows_virtual_machine" "webserver" {
   resource_group_name   = azurerm_resource_group.webserver.name
   network_interface_ids = [azurerm_network_interface.webnic.id]
   size                  = "Standard_B1s"
-  admin_username        = "adminuser"
-  admin_password        = "Password123!"
-  location             = "eastus"
+  admin_username        =  var.admin_username
+  admin_password        =  var.admin_password
+  location             = var.location
   source_image_reference {
     publisher = "MicrosoftWindowsServer"
     offer     = "WindowsServer"
