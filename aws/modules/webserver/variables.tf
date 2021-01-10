@@ -17,9 +17,11 @@ variable "ami" {
     type      = string
     description = "ami_id"
 }
+variable "os_ami" {
+  default = "linux"
+}
 
 variable "ssh_user" {
-    type     = string
-    description  = "ssh user"
+     description  = "ssh user"
 }
 

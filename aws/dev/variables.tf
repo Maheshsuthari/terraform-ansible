@@ -17,6 +17,8 @@ variable "cidr_block" {
 
 variable "ssh_user" {
      type = map
-     default = 
+     default = { 
            windows = "adminsuser"
            linux  = "ubuntu"
+    }
+}

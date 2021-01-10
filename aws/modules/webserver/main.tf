@@ -1,5 +1,5 @@
 locals {
-ssh_user         = var.ssh_user
+ssh_user         = "${lookup(var.ssh_user, var.os_ami)}"
 key_name         = "suthari"
 private_key_path = "../suthari.pem"
 }
@@ -27,7 +27,7 @@ Name = "main"
 }
 resource "aws_subnet" "webserver" {
 vpc_id     = aws_vpc.main.id
-cidr_block = " ${var.cidr_block, 8, 1}"
+cidr_block = "${cidrsubnet(var.cidr_block, 8, 1)}"
 }
 resource "aws_route_table_association" "a" {
 subnet_id      = aws_subnet.webserver.id
