@@ -37,3 +37,12 @@
     name: nginx
     state: "{{ nginx_service_state }}"
     enabled: "{{ nginx_service_enabled }}"
+- name: Copy index.html configuration to web directory
+  template:
+    src: "{{ nginx_web_index }}"
+    dest: "{{ nginx_web_root_dir}}"
+    owner: root
+    group: "{{ root_group }}"
+    mode: 0755
+  notify:
+    - reload nginx
