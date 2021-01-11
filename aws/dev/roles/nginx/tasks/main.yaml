@@ -18,16 +18,7 @@
 - include_tasks: setup-Debian.yml
   when: ansible_os_family == 'Debian'
 
-- include_tasks: setup-FreeBSD.yml
-  when: ansible_os_family == 'FreeBSD'
-
-- include_tasks: setup-OpenBSD.yml
-  when: ansible_os_family == 'OpenBSD'
-
-- include_tasks: setup-Archlinux.yml
-  when: ansible_os_family == 'Archlinux'
-
-# Vhost configuration.
+#importing vhosts tasks 
 - import_tasks: vhosts.yml
 
 # Nginx setup.
@@ -46,3 +37,12 @@
     name: nginx
     state: "{{ nginx_service_state }}"
     enabled: "{{ nginx_service_enabled }}"
+- name: Copy index.html configuration to web directory
+  template:
+    src: "{{ nginx_web_index }}"
+    dest: "{{ nginx_web_root_dir}}"
+    owner: root
+    group: "{{ root_group }}"
+    mode: 0755
+  notify:
+    - reload nginx
