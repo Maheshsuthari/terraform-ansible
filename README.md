@@ -1,10 +1,15 @@
 # terraform-ansible
 #Automate configuration managment(Ansible) with terraform.
 Develop a terraform script to invoke the created module to create a VM. Also use appropriate resource to invoke ansible playbook at the end of VM creation. Ansible playbook should install a nginx web server
+
 #Pre-requisites
+
 terraform 
+
 ansible
+
 aws_cli
+
 azure_cli
 
 
