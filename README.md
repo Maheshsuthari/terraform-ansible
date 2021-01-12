@@ -45,14 +45,16 @@ terraform apply --auto-approve
 
 #Nginx play book nginx. Yaml have defined nginx roles, this roles have tasks, etc
    Tree:
+
     nginx.yaml
+
     roles
 
-      tasks
+       tasks
       
-      Handlers
+       Handlers
  
-      defaults
+       defaults
 
        Vars
        
